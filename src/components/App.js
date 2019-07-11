@@ -1,15 +1,14 @@
 import React from 'react';
-import Joke from './Joke';
-import jokesData from './jokesData'
+import Product from "./Product";
+import productsData from "./productsData";
 
 //arrow function
 function App() {
-    //simulando um arquivo json
-    const jokeComponents = jokesData.map(joke =>
-        <Joke key={joke.id} question={joke.question} answer={joke.answer} />
-    );
+    const productComponents = productsData.map(item =>
+        <Product key={item.id} name={item.name} description={item.description} price={item.price}/>
+        );
     return <div>
-        {jokeComponents}
+        {productComponents}
     </div>;
 }
 
