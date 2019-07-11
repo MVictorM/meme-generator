@@ -13,13 +13,13 @@ const productsData = [
     },
     {
         id: 3,
-        name: "Gabinete.",
+        name: "Gabinete",
         price: 250.00,
         description: "Corsair vem com fan.",
     },
     {
         id: 4,
-        name: "WaterCooler.",
+        name: "WaterCooler",
         price: 280.00,
         description: "Cooler Master, pra resfriar teu pc.",
     },
