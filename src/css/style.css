@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+}
+
+header {
+    height: 100px;
+    margin-bottom: 15px;
+    font-size: 30px;
+    background-color: darkslategrey;
+    text-align: center;
+    color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+header > ul > li {
+    display: inline;
+    margin-left: 20px;
+}
+
+footer {
+    height: auto;
+    margin-bottom: 0px;
+    font-size: 30px;
+    background-color: darkslategrey;
+    text-align: center;
+    color: whitesmoke;
+    display: flex;
+    justify-content: center;
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    /*height: 100px;*/
+    width: 100%;
+    overflow: hidden;
+}
