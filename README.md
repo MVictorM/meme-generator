@@ -1,3 +1,5 @@
+Course link on: [Youtube](https://www.youtube.com/watch?v=DLX62G4lc44)
+
 This project was bootstrapped with [Create React List](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
