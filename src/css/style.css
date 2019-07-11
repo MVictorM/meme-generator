@@ -42,3 +42,7 @@ footer {
     width: 100%;
     overflow: hidden;
 }
+
+.input-group {
+    float: right;
+}

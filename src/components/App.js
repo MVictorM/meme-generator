@@ -1,14 +1,14 @@
 import React from 'react';
-import Product from "./Product";
-import productsData from "./productsData";
+import TodoItem from "./TodoItem";
+import todosData from "./todosData";
 
 //arrow function
 function App() {
-    const productComponents = productsData.map(item =>
-        <Product key={item.id} name={item.name} description={item.description} price={item.price}/>
+    const todoComponents = todosData.map(item =>
+        <TodoItem key={item.id} item={item} />
         );
     return <div>
-        {productComponents}
+        {todoComponents}
     </div>;
 }
 
