@@ -43,6 +43,10 @@ footer {
     overflow: hidden;
 }
 
+.finalized {
+    text-decoration: line-through;
+}
+
 .input-group {
     float: right;
 }
