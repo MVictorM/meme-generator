@@ -1,20 +1,20 @@
 import React, {Component} from 'react';
-import TodoItem from './TodoItem'
-import todosData from './todosData'
 
 //arrow function
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            todos: todosData,
-        }
-    }
 
+    }
+    handleClick() {
+        console.log('Click happened');
+    }
     render() {
-        const todoItems = this.state.todos.map(item => <TodoItem key={item.id} item={item}/>);
         return <div className='todo-list'>
-            {todoItems}
+            <img onMouseEnter={() => console.log('entrou')}
+                 onMouseLeave={() => console.log('saiu')}
+                 src='http://live.staticflickr.com/3077/3158881133_42d58d4a62_b.jpg' />
+            <button onClick={this.handleClick} > Click me! </button>
         </div>;
     }
 }
