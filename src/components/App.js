@@ -12,16 +12,20 @@ class App extends Component {
 
     componentDidMount() {
         setTimeout(() => {
-           this.setState({
-               isLoading: false
-           })
+            this.setState({
+                isLoading: false
+            })
         }, 2000);
     }
 
     render() {
-        return <div>
-            <Conditional isLoading={this.state.isLoading} />
-        </div>;
+        return (
+            <div>
+                {this.state.isLoading ?
+                    <h1>Loading...</h1> :
+                    <Conditional />}
+            </div>
+        );
     }
 }
 
