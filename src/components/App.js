@@ -1,34 +1,52 @@
 import React, {Component} from 'react';
-import TodoItem from './TodoItem'
-import todosData from './todosData'
 
 //arrow function
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            todos: todosData,
         };
-        this.handleChange = this.handleChange.bind(this)
     }
 
-    handleChange(id) {
-        this.setState(prevState => {
-            //varre o objeto prevState e o que tiver o mesmo id que foi clicado, troca o completed
-            return prevState.todos.map(todo => {
-                if(todo.id === id) {
-                    todo.completed = !todo.completed;
-                }
-                return todo;
-            })
-        });
+    componentDidMount() {
+        //GET the data I need to correctly display
+        //The componentDidMount() method runs after the component output has been rendered to the DOM.
+        //This is a good place to set up a timer:
+        this.timerID = setInterval(
+            () => this.tick(),
+            1000
+        );
+    }
+
+    //quando o componente pai passa props, podemos verificar se mudou alguma coisa
+    componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.userID !== prevProps.userID) {
+            this.fetchData(this.props.userID);
+        }
+    }
+
+    //determina se o componente deve ser recarregado
+    //por padrão, react atualiza automaticamente quando tem alguma alteração
+    shouldComponentUpdate(nextProps, nextState) {
+        //return true if want it to update
+        //return false if not
+    }
+
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        //create a backup of the current way things are
+    }
+
+
+    componentWillUnmount() {
+        //teardown or cleanup your code before your component disappears
+        //exemple: remove event listener
+        clearInterval(this.timerID);
     }
 
     render() {
-        const todoItems = this.state.todos.map(item =>
-            <TodoItem key={item.id} item={item} handleChange={this.handleChange}/>);
-        return <div className='todo-list'>
-            {todoItems}
+        return <div>
+
         </div>;
     }
 }
