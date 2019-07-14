@@ -45,6 +45,7 @@ footer {
 
 .finalized {
     text-decoration: line-through;
+    color: #c17266;
 }
 
 .input-group {
