@@ -1,34 +1,41 @@
 import React, {Component} from 'react';
-//https://swapi.co/         --api de star wars
 
-//arrow function
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            character: {},
-            loading: true
+            name: null,
+            age: 24
         };
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    componentDidMount() {
+    handleChange(event) {
+        const {name, value} = event.target
         this.setState({
-            loading: true
+            [name]: value
         });
-        fetch('https://swapi.co/api/people/1')
-            .then(response => response.json())
-            .then(data => {
-                //como não importa o que estava armazenado, não passa prevState como parametro
-                this.setState({
-                    character: data,
-                    loading: false
-                })
-            })
     }
 
     render() {
         return <div>
-            {this.state.loading ? 'Loading...' : this.state.character.name}
+            <form>
+                <label>
+                    Name:
+                    <input type="text" name="name"
+                           placeholder="Full name"
+                           value={this.state.name}
+                           onChange={this.handleChange} />
+                </label>
+                <label>
+                    Age:
+                    <input type="number" name="age"
+                           placeholder="Ex: 24"
+                           value={this.state.age}
+                           onChange={this.handleChange} />
+                </label>
+            </form>
+            <p style={{display: this.state.name && this.state.age ? 'block' : 'none'}}>Hello, <b>{this.state.name}</b>. You are {this.state.age} years old.</p>
         </div>;
     }
 }
