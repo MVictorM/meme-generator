@@ -35,7 +35,7 @@ class App extends Component {
                            onChange={this.handleChange} />
                 </label>
             </form>
-            <p style={{display: this.state.name && this.state.age ? 'block' : 'none'}}>Hello, <b>{this.state.name}</b>. You are {this.state.age} years old.</p>
+            <p>{this.state.name ? "Hello, " + this.state.name + '. ' : ''}{this.state.age ? 'You are ' + this.state.age + 'years old.' : ''}</p>
         </div>;
     }
 }
