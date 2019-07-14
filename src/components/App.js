@@ -1,25 +1,28 @@
 import React, {Component} from 'react';
-import Conditional from './Conditional';
 
 //arrow function
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            unreadMessages: [
-                'real madri is better than barcelona',
-                'barcelona sucks'
-            ]
+            logged: false
         };
+        this.login = this.login.bind(this);
+    }
+
+    login() {
+        this.setState((prevState) => {
+            return {
+                logged: !prevState.logged
+            }
+        });
     }
 
     render() {
         return (
             <div>
-                {this.state.unreadMessages.length > 0 ?
-                    <h1>You have {this.state.unreadMessages.length} unread messages</h1> :
-                    <h1>You don't have any unread messages :(</h1>
-                }
+                <h2>{this.state.logged ? 'Logged in' : 'Logged out'}</h2>
+                <button onClick={this.login}>{this.state.logged ? 'Log out' : 'Log in'}</button>
             </div>
         );
     }
