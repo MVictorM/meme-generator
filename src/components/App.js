@@ -1,23 +1,36 @@
 import React, {Component} from 'react';
-
+//exercise
+//https://coursework.vschool.io/travel-form/
+//formik
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            age: 24,
-            isFriendly: false,
+            firstName: '',
+            lastName: '',
+            age: '',
             gender: '',
-            favoriteColor: ''
+            location: '',
+            restriction: {
+                'vegetarian': false,
+                'kosher': false,
+                'lactose': false,
+            }
         };
         this.handleChange = this.handleChange.bind(this);
+        this.submitForm = this.submitForm.bind(this);
     }
 
     handleChange(event) {
+        console.log(event)
         const {name, value, type, checked} = event.target;
         if (type === 'checkbox') {
-            return this.setState({
-                [name]: checked
+            console.log(name)
+            console.log(value)
+            console.log(type)
+            console.log(checked)
+            return this.setState((prevState){
+
             });
         }
         return this.setState({
@@ -25,14 +38,42 @@ class App extends Component {
         });
     }
 
+    submitForm() {
+        let msg = '';
+        if(this.state.firstName !== '' && this.state.lastName !== '') {
+            msg += 'Name: ' + this.state.firstName + ' ' + this.state.lastName + '\n'
+        }
+        if(this.state.age !== '') {
+            msg += 'Age: ' + this.state.age + '\n'
+        }
+        if(this.state.gender !== '') {
+            msg += 'Gender: ' + this.state.gender + '\n'
+        }
+        if(this.state.location !== '') {
+            msg += 'Location: ' + this.state.location + '\n'
+        }
+        if(this.state.restriction.length > 0) {
+            msg += 'Dietary restriction: ' + this.state.restriction + '\n'
+        }
+        alert(msg);
+    }
+
     render() {
         return <div>
             <form>
                 <label>
-                    Name:
-                    <input type="text" name="name"
-                           placeholder="Full name"
-                           value={this.state.name}
+                    First name:
+                    <input type="text" name="firstName"
+                           placeholder="First name"
+                           value={this.state.firstName}
+                           onChange={this.handleChange}/>
+                </label>
+                <br/>
+                <label>
+                    Last name:
+                    <input type="text" name="lastName"
+                           placeholder="Last name"
+                           value={this.state.lastName}
                            onChange={this.handleChange}/>
                 </label>
                 <br/>
@@ -44,21 +85,7 @@ class App extends Component {
                            onChange={this.handleChange}/>
                 </label>
                 <br/>
-                <textarea
-                    name='description'
-                    value={this.state.description}
-                    placeholder='type here your description'
-                    onChange={this.handleChange}
-                />
-                <label>
-                    <br/>
-                    Is friendly?
-                    <input type="checkbox"
-                           name="isFriendly"
-                           checked={this.state.isFriendly}
-                           onChange={this.handleChange}/>
-                </label>
-                <br/>
+                <p>Gender: </p>
                 <label>
                     <input type="radio"
                            name="gender"
@@ -78,27 +105,55 @@ class App extends Component {
                 </label>
                 <br/>
                 <label>
-                    Favorite color:
+                    <input type="radio"
+                           name="gender"
+                           value="trans"
+                           checked={this.state.gender === "trans"}
+                           onChange={this.handleChange}/>
+                    Female
+                </label>
+                <br/>
+                <label>
+                    Location:
                 <select
-                    value={this.state.favoriteColor}
+                    value={this.state.location}
                     onChange={this.handleChange}
-                    name="favoriteColor">
+                    name="location">
                     <option value="">Select an option</option>
-                    <option value="blue">Blue</option>
-                    <option value="green">Green</option>
-                    <option value="red">Red</option>
-                    <option value="orange">Orange</option>
-                    <option value="yellow">Yellow</option>
-                    <option value="grey">Grey</option>
+                    <option value="recife">Recife</option>
+                    <option value="miami">Miami</option>
+                    <option value="moscou">Moscou</option>
+                    <option value="madri">Madri</option>
                 </select>
                 </label>
                 <br />
-                <button>Submit</button>
+                <p>Dietary restrictions: </p>
+                <label>
+                    <input type="checkbox"
+                           name="restriction.vegetarian"
+                           checked={this.state.restriction['vegetarian']}
+                           onChange={this.handleChange}/>
+                    Vegetarian
+                </label>
+                <br />
+                <label>
+                    <input type="checkbox"
+                           name="restriction.kosher"
+                           checked={this.state.restriction['kosher']}
+                           onChange={this.handleChange}/>
+                    Kosher
+                </label>
+                <br />
+                <label>
+                    <input type="checkbox"
+                           name="restriction.lactose"
+                           checked={this.state.restriction['lactose']}
+                           onChange={this.handleChange}/>
+                    Lactose free
+                </label>
+                <br />
+                <button type="button" onClick={this.submitForm}>Submit</button>
             </form>
-            <p>{this.state.name ? "Hello, " + this.state.name + '. ' : ''}{this.state.age ? 'You are ' + this.state.age + 'years old.' : ''}</p>
-            <p>You are a { this.state.gender }</p>
-            <p>Your favorite color is { this.state.favoriteColor }</p>
-            <p>You are { this.state.isFriendly ? 'friendly' : 'not friendly'}</p>
 
         </div>;
     }
