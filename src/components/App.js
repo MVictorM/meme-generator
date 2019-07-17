@@ -92,11 +92,14 @@ class App extends Component {
                     <option value="grey">Grey</option>
                 </select>
                 </label>
+                <br />
+                <button>Submit</button>
             </form>
             <p>{this.state.name ? "Hello, " + this.state.name + '. ' : ''}{this.state.age ? 'You are ' + this.state.age + 'years old.' : ''}</p>
             <p>You are a { this.state.gender }</p>
             <p>Your favorite color is { this.state.favoriteColor }</p>
             <p>You are { this.state.isFriendly ? 'friendly' : 'not friendly'}</p>
+
         </div>;
     }
 }
