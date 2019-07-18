@@ -1,5 +1,12 @@
 This project was bootstrapped with [Create React List](https://github.com/facebook/create-react-app). <br>
 [Smart and dumb components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
+[Official React Context API](https://reactjs.org/docs/context.html)<br>
+[Error Boundaries](https://reactjs.org/docs/error-boundaries.html)<br>
+[render props](https://reactjs.org/docs/render-props.html)<br>
+[Higher Order Components](https://reactjs.org/docs/higher-order-components.html)<br>
+[React Router](https://reacttraining.com/react-router/core/guides/philosophy)<br>
+[React Hooks](https://reactjs.org/docs/hooks-intro.html)<br>
+[React lazy, memo, and Suspense](https://reactjs.org/blog/2018/10/23/react-v-16-6.html)<br>
 
 ## Available Scripts
 
