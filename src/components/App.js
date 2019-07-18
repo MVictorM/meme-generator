@@ -11,11 +11,9 @@ class App extends Component {
             age: '',
             gender: '',
             location: '',
-            restriction: {
-                'vegetarian': false,
-                'kosher': false,
-                'lactose': false,
-            }
+            isVegetarian: false,
+            isKosher: false,
+            isLactoseFree: false,
         };
         this.handleChange = this.handleChange.bind(this);
         this.submitForm = this.submitForm.bind(this);
@@ -25,13 +23,9 @@ class App extends Component {
         console.log(event)
         const {name, value, type, checked} = event.target;
         if (type === 'checkbox') {
-            console.log(name)
-            console.log(value)
-            console.log(type)
-            console.log(checked)
-            return this.setState((prevState){
-
-            });
+            return this.setState( {
+                [name]: checked
+            })
         }
         return this.setState({
             [name]: value
@@ -52,10 +46,29 @@ class App extends Component {
         if(this.state.location !== '') {
             msg += 'Location: ' + this.state.location + '\n'
         }
-        if(this.state.restriction.length > 0) {
-            msg += 'Dietary restriction: ' + this.state.restriction + '\n'
+        let restrictions = this.restrictionsText()
+
+        if(restrictions !== '' ) {
+            msg += 'Dietary restriction: ' + restrictions + '\n'
         }
         alert(msg);
+    }
+
+    restrictionsText() {
+        let restrictions = '';
+        if(this.state.isVegetarian ) {
+            restrictions +=  'Vegeterian, '
+        }
+        if(this.state.isKosher ) {
+            restrictions +=  'Kosher, '
+        }
+        if(this.state.isLactoseFree ) {
+            restrictions +=  'Lactose free, '
+        }
+        if(restrictions !== '') {
+            restrictions = restrictions.substr(0, restrictions.length - 2)
+        }
+        return restrictions;
     }
 
     render() {
@@ -130,24 +143,24 @@ class App extends Component {
                 <p>Dietary restrictions: </p>
                 <label>
                     <input type="checkbox"
-                           name="restriction.vegetarian"
-                           checked={this.state.restriction['vegetarian']}
+                           name="isVegetarian"
+                           checked={this.state.isVegetarian}
                            onChange={this.handleChange}/>
                     Vegetarian
                 </label>
                 <br />
                 <label>
                     <input type="checkbox"
-                           name="restriction.kosher"
-                           checked={this.state.restriction['kosher']}
+                           name="isKosher"
+                           checked={this.state.isKosher}
                            onChange={this.handleChange}/>
                     Kosher
                 </label>
                 <br />
                 <label>
                     <input type="checkbox"
-                           name="restriction.lactose"
-                           checked={this.state.restriction['lactose']}
+                           name="isLactoseFree"
+                           checked={this.state.isLactoseFree}
                            onChange={this.handleChange}/>
                     Lactose free
                 </label>
