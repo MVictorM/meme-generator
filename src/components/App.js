@@ -1,26 +1,14 @@
-import React from 'react';
-import Header from "./Header";
-import MainContent from "./MainContent";
-import Footer from "./Footer";
-import Contact from "./Contact";
+import React from "react"
+import Header from "./Header"
+import MemeGenerator from "./MemeGenerator"
 
-//arrow function
-const App = () =>
-    <div>
-      <Header/>
-      <MainContent/>
-      {/*prop diretamente no componente*/}
-      {/*<Contact*/}
-      {/*  name="teste"*/}
-      {/*  phone="(81)99808-8444"*/}
-      {/*/>*/}
-      {/*exemplo simulando dados vindos de json armazenados em contact*/}
-        <Contact
-            contact={{name:"teste",
-                phone:"(81)99808-8444"}}
+function App() {
+    return (
+        <div>
+            <Header />
+            <MemeGenerator />
+        </div>
+    )
+}
 
-        />
-      <Footer/>
-    </div>;
-
-export default App;
+export default App
