@@ -1,11 +1,12 @@
 import React from 'react';
-import Form from './FormContainer';
-//exercise
-//https://coursework.vschool.io/travel-form/
-//formik
+import Header from './Header'
+import MemeGenerator from './MemeGenerator'
 function App() {
     return (
-        <Form />
+        <div>
+            <Header/>
+            <MemeGenerator/>
+        </div>
     )
 }
 
