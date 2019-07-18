@@ -1,38 +1,34 @@
 import React, {Component} from "react"
 
 class MemeGenerator extends Component {
-    constructor() {
-        super()
-        this.state = {
-            topText: "",
-            bottomText: "",
-            randomImg: "http://i.imgflip.com/1bij.jpg",
-            allMemeImgs: []
-        }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
+    //creating state as class variable, we don't need the constructor anymore
+    state = {
+        topText: "",
+        bottomText: "",
+        randomImg: "http://i.imgflip.com/1bij.jpg",
+        allMemeImgs: []
+    };
 
     componentDidMount() {
         fetch("https://api.imgflip.com/get_memes")
             .then(response => response.json())
             .then(response => {
-                const {memes} = response.data
-                this.setState({ allMemeImgs: memes })
-            })
+                const {memes} = response.data;
+                this.setState({ allMemeImgs: memes });
+            });
     }
+    //Using arrow functions, we don't need to bind this in constructor
+    handleChange = (event) => {
+        const {name, value} = event.target;
+        this.setState({ [name]: value });
+    };
 
-    handleChange(event) {
-        const {name, value} = event.target
-        this.setState({ [name]: value })
-    }
-
-    handleSubmit(event) {
-        event.preventDefault()
-        const randNum = Math.floor(Math.random() * this.state.allMemeImgs.length)
-        const randMemeImg = this.state.allMemeImgs[randNum].url
-        this.setState({ randomImg: randMemeImg })
-    }
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const randNum = Math.floor(Math.random() * this.state.allMemeImgs.length);
+        const randMemeImg = this.state.allMemeImgs[randNum].url;
+        this.setState({ randomImg: randMemeImg });
+    };
 
     render() {
         return (
