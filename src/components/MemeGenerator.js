@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import {Button, InputGroup, FormControl }from 'react-bootstrap';
 
 class MemeGenerator extends Component {
     //creating state as class variable, we don't need the constructor anymore
@@ -34,22 +35,29 @@ class MemeGenerator extends Component {
         return (
             <div>
                 <form className="meme-form" onSubmit={this.handleSubmit}>
-                    <input
-                        type="text"
-                        name="topText"
-                        placeholder="Top Text"
-                        value={this.state.topText}
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        type="text"
-                        name="bottomText"
-                        placeholder="Bottom Text"
-                        value={this.state.bottomText}
-                        onChange={this.handleChange}
-                    />
-
-                    <button>Gen</button>
+                    <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="inputGroup-bottomText">Bottom text</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl
+                            type="text"
+                            name="topText"
+                            value={this.state.topText}
+                            onChange={this.handleChange}
+                        />
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="inputGroup-topText">Top text</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl
+                            type="text"
+                            name="bottomText"
+                            value={this.state.bottomText}
+                            onChange={this.handleChange}
+                        />
+                        <InputGroup.Append>
+                            <Button type="submit" variant="outline-secondary">Gen</Button>
+                        </InputGroup.Append>
+                    </InputGroup>
                 </form>
                 <div className="meme">
                     <img src={this.state.randomImg} alt="" />
