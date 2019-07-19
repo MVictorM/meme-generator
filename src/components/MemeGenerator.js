@@ -1,21 +1,25 @@
 import React, {Component} from "react"
-import {Button, InputGroup, FormControl }from 'react-bootstrap';
+import {InputGroup, FormControl, DropdownButton, Dropdown }from 'react-bootstrap';
 
 class MemeGenerator extends Component {
     //creating state as class variable, we don't need the constructor anymore
     state = {
         topText: "",
         bottomText: "",
-        randomImg: "http://i.imgflip.com/1bij.jpg",
-        allMemeImgs: []
+        imgUrl: "http://i.imgflip.com/1bij.jpg",
+        allMemeImgs: [],
+        memeSelected: '',
+        loading: true
     };
+
+    options = {};
 
     componentDidMount() {
         fetch("https://api.imgflip.com/get_memes")
             .then(response => response.json())
             .then(response => {
                 const {memes} = response.data;
-                this.setState({ allMemeImgs: memes });
+                this.setState({ allMemeImgs: memes, memeSelected: memes[0]['name'], imgUrl: memes[0]['url'], loading: false });
             });
     }
     //Using arrow functions, we don't need to bind this in constructor
@@ -24,17 +28,18 @@ class MemeGenerator extends Component {
         this.setState({ [name]: value });
     };
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        const randNum = Math.floor(Math.random() * this.state.allMemeImgs.length);
-        const randMemeImg = this.state.allMemeImgs[randNum].url;
-        this.setState({ randomImg: randMemeImg });
+    setUrlImage = (event) => {
+        // this.setState({ imgUrl: 'aaa' });
+        console.log(event);
     };
 
     render() {
+        this.options = this.state.allMemeImgs.map((item, key) =>
+            <Dropdown.Item key={key} url={item.url} onClick={this.setUrlImage}>{item.name}</Dropdown.Item>
+        );
         return (
             <div>
-                <form className="meme-form" onSubmit={this.handleSubmit}>
+                <form className="meme-form">
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text id="inputGroup-bottomText">Bottom text</InputGroup.Text>
@@ -54,13 +59,21 @@ class MemeGenerator extends Component {
                             value={this.state.bottomText}
                             onChange={this.handleChange}
                         />
-                        <InputGroup.Append>
-                            <Button type="submit" variant="outline-secondary">Gen</Button>
-                        </InputGroup.Append>
+                    </InputGroup>
+                    <InputGroup className="mb-3">
+                        <DropdownButton
+                            as={InputGroup.Prepend}
+                            variant="outline-secondary"
+                            title={this.state.memeSelected}
+                            id="input-group-dropdown"
+                            style={{display: this.state.loading ? 'none' : 'block'}}
+                        >
+                            {this.options}
+                        </DropdownButton>
                     </InputGroup>
                 </form>
                 <div className="meme">
-                    <img src={this.state.randomImg} alt="" />
+                    <img src={this.state.imgUrl} alt="" />
                     <h2 className="top">{this.state.topText}</h2>
                     <h2 className="bottom">{this.state.bottomText}</h2>
                 </div>
