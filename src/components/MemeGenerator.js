@@ -28,14 +28,13 @@ class MemeGenerator extends Component {
         this.setState({ [name]: value });
     };
 
-    setUrlImage = (event) => {
-        // this.setState({ imgUrl: 'aaa' });
-        console.log(event);
+    setUrlImage = (url, name) => {
+        this.setState({ imgUrl: url, memeSelected: name });
     };
 
     render() {
         this.options = this.state.allMemeImgs.map((item, key) =>
-            <Dropdown.Item key={key} url={item.url} onClick={this.setUrlImage}>{item.name}</Dropdown.Item>
+            <Dropdown.Item key={key} url={item.url} onClick={() => this.setUrlImage(item.url, item.name)}>{item.name}</Dropdown.Item>
         );
         return (
             <div>
